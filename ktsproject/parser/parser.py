@@ -22,9 +22,9 @@ def get_noutbuk_by_link(link):
            elem_link = elem_href['href']
            elem_text = elem.text.strip().split('\n')
            nalicie = elem_text[0]
-           decription = elem_text[1]
+           description = elem_text[1]
            price = elem_text[2]
-           noutbuk_items.append((elem_link, nalicie, decription, int(price.replace('.00 р.',' '))))
+           noutbuk_items.append((elem_link, nalicie, description, int(price.replace('.00 р.',' '))))
         except:
             print(f'Нет в наличии')
     return noutbuk_items

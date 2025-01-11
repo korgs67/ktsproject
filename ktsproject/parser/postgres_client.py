@@ -22,7 +22,7 @@ def create_noutbuk_table(conn):
     cursor_object = conn.cursor()
     cursor_object.execute(
         """
-            CREATE TABLE IF NOT EXISTS noutbuk
+            CREATE TABLE IF NOT EXISTS ktsapp_noutbuk
             (
                 id serial PRIMARY KEY, 
                 link text,
@@ -35,11 +35,11 @@ def create_noutbuk_table(conn):
     conn.commit()
 def get_items(conn, price_from=0, price_to=100000):
     cursor = conn.cursor()
-    cursor.execute(f'SELECT * FROM noutbuk WHERE price >= {price_from} and price <= {price_to}')
+    cursor.execute(f'SELECT * FROM ktsapp_noutbuk WHERE price >= {price_from} and price <= {price_to}')
     return cursor.fetchall()
 def insertconn(conn, link, nalicie, description, price):
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO noutbuk (link, nalicie, description, price) VALUES ('{link}', '{nalicie}', '{description}', '{price}')")
+    cursor.execute(f"INSERT INTO ktsapp_noutbuk (link, nalicie, description, price) VALUES ('{link}', '{nalicie}', '{description}', '{float(price)}')")
     conn.commit()
 def run_test():
     conn = get_connection()
