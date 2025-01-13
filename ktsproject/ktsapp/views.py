@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . models import Noutbuk
@@ -13,4 +12,7 @@ def show_all(request):
     )
 
 def main(request):
-    return redirect()
+    return redirect('main')
+
+def page_not_found(request, *args, **argv):
+    return redirect('main')

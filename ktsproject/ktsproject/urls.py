@@ -21,3 +21,5 @@ urlpatterns = [
     path('ktsapp/', include('ktsapp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+handler500 = 'ktsapp.views.page_not_found'

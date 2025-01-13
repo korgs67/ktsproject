@@ -7,11 +7,11 @@ class Noutbuk(models.Model):
     nalicie = models.TextField('Есть в наличии')
     description = models.TextField('Описание')
     price = models.DecimalField(max_digits=12, decimal_places=2)
-   # DateTimeField: DateTimeField = models.DateTimeField(
-   #     auto_now_add=True,
-   #     blank=True,
-   #     verbose_name='Дата прихода '
-   # )
+    parse_datetime = models.DateTimeField(
+        auto_now_add=True,
+        blank=True,
+        verbose_name='Дата прихода '
+    )
 
     @property
     def get_absolute_url(self):
@@ -23,4 +23,4 @@ class Noutbuk(models.Model):
     class Meta:
         verbose_name = 'Ноутбук'
         verbose_name_plural = 'Ноутбуки'
-        ordering = ['-price']
+        ordering = ['parse_datetime','-price']
