@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from . models import Noutbuk
 
@@ -11,3 +11,6 @@ def show_all(request):
         'ktsapp/show_all.html',
         {'noutbuks': noutbuks}
     )
+
+def main(request):
+    return redirect()
