@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 align="center"><b>Админка.</b> Все ноутбуки</h1>
+
+{% if noutbuks %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Ссылка</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Редактирование</th>
+                <th scope="col">Удаление</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for noutbuk in noutbuks %}
+            <tr>
+                <td><b>{{noutbuk.id}}</b></td>
+                <td>{{noutbuk.parse_datetime}}</td>
+                <td scope="row"><a href={{noutbuk.link}}>Прямая ссылка</a></td>
+                <td>{{noutbuk.price}}</td>
+                <td>{{noutbuk.description}}</td>
+                <td>
+                    <form action="{% url 'update_item' noutbuk.id %}" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit" class="btn btn-success">Сохранить</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'delete_item' noutbuk.id %}">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<h2>К сожалению ноутьуков нет</h2>
+{% endif %}
+
+{% endblock %}
